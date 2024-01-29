@@ -1,14 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
 import Login from './login';
 import Home from './home';
 import { getToken } from "./utils";
+const history = createBrowserHistory({ basename: '/faa' });
 
 function App() {
 
   const token=getToken()
   return (
-    <Router>
+    <Router history={history} basename="/faa">
     <Routes>
     {token ?
       <Route path="/" element={<Home />} />
