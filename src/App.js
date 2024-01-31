@@ -5,6 +5,9 @@ import { createBrowserHistory } from 'history';
 import Login from './login';
 import Home from './home';
 import { getToken } from "./utils";
+import WithOutNav from "./withOutNav";
+import WithNav from "./withNav";
+
 const history = createBrowserHistory({ basename: '/faa' });
 
 function App() {
@@ -13,8 +16,13 @@ function App() {
   return (
     <Router history={history} basename="/faa">
     <Routes>
+    <Route element ={<WithOutNav />}>
     <Route path="/" element={token ? <Navigate to="/home" /> : <Login />} />
+    <Route path="/login" element={<Login />} />
+  </Route>
+  <Route element = {<WithNav />}>
     <Route path="/home" element={<Home />} />
+    </Route>
     </Routes>
   </Router>
   );
